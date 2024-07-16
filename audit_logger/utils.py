@@ -37,7 +37,7 @@ def get_only_changed_values_and_id(old_data: dict, new_data: dict) -> dict:
     diff_dict = get_only_changed_values(old_data, new_data)
 
     if "_id" in old_data:
-        diff_dict[id_field] = old_data.get(id_field)
+        diff_dict["_id"] = old_data.get("_id")
         diff_dict.pop("id", None)
 
     return diff_dict
