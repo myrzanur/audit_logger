@@ -52,7 +52,6 @@ class AuditBlueprint(Blueprint):
     """
     def __init__(self, *args, **kwargs):
         self.log_methods = kwargs.pop("log_methods", DEFAULT_LOG_METHODS)
-        self.id_field = kwargs.pop("id_field", "_id")
         self.audit_collection = None
 
         super(AuditBlueprint, self).__init__(*args, **kwargs)
@@ -75,7 +74,7 @@ class AuditBlueprint(Blueprint):
             elif request.method == 'GET':
                 new_data = old_data = None
             else:
-                new_data = get_only_changed_values_and_id(old_data or {}, new_data, self.id_field) if old_data else new_data
+                new_data = get_only_changed_values_and_id(old_data or {}, new_data) if old_data else new_data
 
             self.create_log(ActionEnum(request.method), response.status_code, request.path, new_value=new_data, old_value=old_data)
 
