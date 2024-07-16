@@ -7,5 +7,5 @@ This is a library that provides a simple way to log audit events in a database.
 You can install the library using pip:
 
 ```bash
-pip install -e ./audit_logger
+pip install git+https://github.com/myrzanur/audit_logger.git
 ```

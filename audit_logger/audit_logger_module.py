@@ -31,12 +31,11 @@ class AuditBlueprint(Blueprint):
         super(AuditBlueprint, self).__init__(*args, **kwargs)
         self.after_request(self.after_data_request)
 
-    def is_loggable(self, response) -> bool:
+    def _is_loggable(self, response) -> bool:
         return request.method in self.log_methods and response.status_code in SUCCESS_STATUS_CODES
 
     def after_data_request(self, response):
-        if self.is_loggable(response):
-            print("after data request", get_json_body(request))
+        if self._is_loggable(response):
             if g.get("old_data"):
                 old_data = g.old_data
             else:
