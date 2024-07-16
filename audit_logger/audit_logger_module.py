@@ -20,14 +20,13 @@ class AuditBlueprint(Blueprint):
         AuditBlueprint is a blueprint that logs changes to a collection in a MongoDB database.
     """
     def __init__(self, *args, **kwargs):
-        self.audit_log_collection = kwargs.pop("audit_log_collection", None)
         self.get_audit_database_func = kwargs.pop("get_audit_database_func", None)
         self.target_collection_name = kwargs.pop("target_collection_name", None)
         self.log_methods = kwargs.pop("log_methods", DEFAULT_LOG_METHODS)
         self.id_field = kwargs.pop("id_field", "_id")
 
-        # if self.audit_log_collection is None or self.target_collection_name is None:
-        #     raise ValueError("audit_log_collection and target_collection are required")
+        if self.get_audit_database_func is None or self.target_collection_name is None:
+            raise ValueError("get_audit_database_func and target_collection are required")
 
         super(AuditBlueprint, self).__init__(*args, **kwargs)
         self.after_request(self.after_data_request)
