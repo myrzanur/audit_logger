@@ -42,3 +42,18 @@ def get_only_changed_values_and_id(old_data: dict, new_data: dict) -> dict:
 
     return diff_dict
 
+
+def get_action(http_method: str, status_code: int) -> str:
+    if http_method == "GET":
+        return "RETRIEVE"
+
+    if http_method == "POST":
+        if status_code == 201:
+            return "CREATE"
+        return "UPDATE"
+
+    if http_method == "PUT":
+        return "UPDATE"
+
+    if http_method == "DELETE":
+        return "DELETE"
