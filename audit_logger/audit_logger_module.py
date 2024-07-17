@@ -47,7 +47,7 @@ class AuditBlueprint(Blueprint):
 
     def get_audit_collection(self):
         if not self.audit_collection:
-            MongDB.create_instance()
+            MongoDB.create_instance()
             self.audit_collection = MongoDB._instance._db["audit"]
 
     def create_log(self, action: str, endpoint: str, new_value=None, old_value=None):
