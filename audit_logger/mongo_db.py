@@ -10,7 +10,7 @@ class MongoDB:
         print("=== MongoDB New Called")
         if cls._instance is None:
             print("=== MongoDB New is None")
-            cls._instance = super(MongDB, cls).__new__(cls)
+            cls._instance = super(MongoDB, cls).__new__(cls)
 
         return cls._instance
 
