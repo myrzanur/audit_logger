@@ -1,8 +1,7 @@
 from datetime import datetime
 from enum import Enum
-from pymongo import MongoClient
 
-from flask import Blueprint, request, g, current_app as app
+from flask import Blueprint, request, g
 from audit_logger.utils import get_json_body, get_only_changed_values_and_id, get_action
 from audit_logger.mongo_db import MongoDB
 

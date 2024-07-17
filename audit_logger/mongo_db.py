@@ -1,4 +1,5 @@
-from flask import has_app_context
+from flask import has_app_context, current_app as app
+from pymongo import MongoClient
 
 
 class MongoDB:
